@@ -9,7 +9,7 @@ Tokens: ```+, -, *, /, ^, %, =, :=, =>, <=>, {}, [], (), $, @, !, \, :, ->, ;```
 ```js
 x = 2
 y = 4
-print x + y // 6
+$x + y$ // 6
 ```
 
 ## Discrete Operations
@@ -17,8 +17,8 @@ print x + y // 6
 ```js
 P = true
 Q = false
-print Q => P // True
-print P => Q // False
+$Q => P$ // True
+$P => Q$ // False
 ```
 
 ## Expression Building
@@ -40,6 +40,16 @@ space:open
       then the student has passed // Rule
 
    s = a student with a score greater than 95 // Definition
-   print $s has passed$ // True
+   $s has passed$ // True
 space:close
+```
+
+## Functions
+
+```js
+f(x) = @x@
+g(x) = @x + 1@
+$f(1) + g(1)$ // 3
+h(x) = f(x) + g(x) // @x + (x + 1)@
+$h(1)$ // 3
 ```
