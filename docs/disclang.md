@@ -94,9 +94,9 @@ if x < 10 then >>START
 ```js
 #define "iloop" from "std::loop"
 
-F(x /*Incrementer*/, rf):open
-   rf := $x + 1$
-F(rf):close
+F(x /*Incrementer*/, y):open
+   y := $x + 1$
+F(y):close
 
 // iloop(execute, args, min, max, step)
 // x: incrementer, rf: return values of F
@@ -109,14 +109,14 @@ y := iloop(f(x, rf) := @F(x, ...rf)@, (1), 1, 3, 1)
 ```js
 #define "cloop" from "std::loop"
 
-F(rf):open
-   rf := $rf + 1$
-F(rf):close
+F(y):open
+   y := $y + 1$
+F(y):close
 
-G(rf):open
-   if rf < 6 $true$ and G:close
-   $false$
-G(rf):close
+G(y):open
+   if y < 6 then c := $true$ and G:close
+   c := $false$
+G(c):close
 
 // cloop(execute, condition, arguments)
 // rf: return values of F
