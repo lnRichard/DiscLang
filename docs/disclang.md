@@ -194,3 +194,12 @@ F(x):open
    x := $x + 1$
 F(x):close
 ```
+
+## Using Pointers
+
+```js
+x := 4
+y := &x
+y := 2
+$x$ // 2
+```
