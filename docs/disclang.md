@@ -98,9 +98,9 @@ F(x /*Incrementer*/, y):open
    y := $x + 1$
 F(y):close
 
-// iloop(execute, args, min, max, step)
+// iloop(execute, min, max, step, arguments)
 // x: incrementer, rf: return values of F
-y := iloop(f(x, rf) := @F(x, ...rf)@, (1), 1, 3, 1)
+y := iloop(f(x, rf) := @F(x, ...rf)@, 1, 3, 1, (1))
 // 0 + 2 + 4 + 6 = 12
 ```
 
