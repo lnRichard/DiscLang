@@ -66,6 +66,30 @@ F(y, z):close
 a, b := $F(1)$ // 2, 1
 ```
 
+## Looping Functionality
+
+```js
+x := 1
+
+<<START
+$;x + 1$
+x := x + 1
+if x < 10 then >>START
+```
+
+## Looping Library
+
+```js
+#define "loop" from "std::loop"
+
+F(x):open
+   x := $x + 1$
+F(x):close
+
+// loop(outcome, incrementer, min, max, step)
+y := loop(f(s, x) := @s + F(x)@, 1, 3, 1) // 0 + 2 + 4 + 6 = 12
+```
+
 ## Printing Rules
 
 ```js
@@ -73,4 +97,22 @@ x := 2
 f(x) := @;x = x@ // Comparison ;x and x
 $f(3)$ // Does not print, as 'x' is caught by ';x ='
 $;x$ // Does print (3), 'x;' is caught by nothing
+
+#define "print" from "std::print"
+print($x + 1 = 2$) // Print the outcome
+print(f) // Print a function
+```
+
+## Documenting Code
+
+```js
+"""
+:open
+  x {0...\INF}: Value that will get 1 added to it
+:close
+  x {0...\INF}: Value that has gotten 1 added to it
+"""
+F(x):open
+   x := $x + 1$
+F(x):close
 ```
