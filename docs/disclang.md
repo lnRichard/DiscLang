@@ -66,6 +66,16 @@ F(y, z):close
 a, b := $F(1)$ // 2, 1
 ```
 
+## Early Stopping
+
+```js
+F(x):open
+   x := $x + 1$
+   if x < 10 then F:close // Early stop
+   x := $x + 1$
+F(x):close
+```
+
 ## Looping Functionality
 
 ```js
@@ -79,15 +89,39 @@ if x < 10 then >>START
 
 ## Looping Library
 
+### Iterative Loop
+
 ```js
-#define "loop" from "std::loop"
+#define "iloop" from "std::loop"
 
-F(x):open
-   x := $x + 1$
-F(x):close
+F(x /*Incrementer*/, rf):open
+   rf := $x + 1$
+F(rf):close
 
-// loop(outcome, incrementer, min, max, step)
-y := loop(f(s, x) := @s + F(x)@, 1, 3, 1) // 0 + 2 + 4 + 6 = 12
+// iloop(execute, args, min, max, step)
+// x: incrementer, rf: return values of F
+y := iloop(f(x, rf) := @F(x, ...rf)@, (1), 1, 3, 1)
+// 0 + 2 + 4 + 6 = 12
+```
+
+### Conditional Loop
+
+```js
+#define "cloop" from "std::loop"
+
+F(rf):open
+   rf := $rf + 1$
+F(rf):close
+
+G(rf):open
+   if rf < 6 $true$ and G:close
+   $false$
+G(rf):close
+
+// cloop(execute, condition, arguments)
+// rf: return values of F
+y := cloop(f(rf) := @F(...rf)@, g(rf) := @G(...rf)@, (1))
+// 1 + 3 + 5 + 7
 ```
 
 ## Printing Rules
