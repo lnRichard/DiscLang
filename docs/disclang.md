@@ -76,6 +76,50 @@ F(x):open
 F(x):close
 ```
 
+## Async Spaces
+
+```js
+#define "print" from "std::print"
+
+F(x):open
+   x := x + 1
+F(x):close
+
+G(x):async
+   await x := F(2) + x // Await resolve
+G(x):close
+
+// Chain Existing Function
+H(x):open
+   print("Resolved")
+H(x):close
+
+x := G(1):H
+
+// One-Time Function
+x := G(1):H(x):open
+   print("Resolved")
+H(x):close
+```
+
+## Advanced Chaining
+
+```js
+F(x):async
+   x := x + 1
+F(x):close
+
+G(x):open
+   x := x + 1
+G(x):close
+
+H(x, y):open
+   x := x + y
+H(x):close
+
+x := F(1):(...G, 1):H
+```
+
 ## Looping Functionality
 
 ```js
