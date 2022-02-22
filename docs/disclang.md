@@ -2,8 +2,6 @@
 
 Sources: <https://www.maths.usyd.edu.au/u/UG/JM/MATH1901/r/PDF/cheat-sheet.pdf>
 
-Tokens: ```+, -, *, /, ^, %, =, :=, =>, <=>, {}, [], (), $, @, !, \, :, ->, ;```
-
 ## Normal Operations
 
 ```js
@@ -21,6 +19,17 @@ $Q => P$ // True
 $P => Q$ // False
 ```
 
+## Conditional Logic
+
+```js
+P := true
+Q := false
+// Assign
+
+// If statement
+if $Q => P$ then $1$ // 1
+```
+
 ## Expression Building
 
 ```js
@@ -36,10 +45,10 @@ c := $;a + ;b = 3$ // c = 1
 ```js
 // Create a space
 space:open
-   P := if a student their score becomes greater than 90
-      then the student has passed // Rule
+   P := $if a student their score becomes greater than 90
+      then the student has passed$ // Rule
 
-   s := a student with a score greater than 95 // Definition
+   s := $a student with a score greater than 95$ // Definition
    $s has passed$ // True
 space:close
 ```
@@ -61,7 +70,7 @@ F(x):open
    // x is now a global in this space
    y := $;x + 1$
    z := 1
-F(y, z):close
+F(y, z):close // Returns an ordered set by default
 
 a, b := $F(1)$ // 2, 1
 ```
@@ -71,7 +80,7 @@ a, b := $F(1)$ // 2, 1
 ```js
 F(x):open
    x := $x + 1$
-   if x < 10 then F:close // Early stop
+   if $x < 10$ then F:close // Early stop
    x := $x + 1$
 F(x):close
 ```
@@ -82,11 +91,11 @@ F(x):close
 #define "print" from "std::print"
 
 F(x):open
-   x := x + 1
+   x := $x + 1$
 F(x):close
 
 G(x):async
-   await x := F(2) + x // Await resolve
+   await x := $F(2) + x$ // Await resolve
 G(x):close
 
 // Chain Existing Function
@@ -106,15 +115,15 @@ H(x):close
 
 ```js
 F(x):async
-   x := x + 1
+   x := $x + 1$
 F(x):close
 
 G(x):open
-   x := x + 1
+   x := $x + 1$
 G(x):close
 
 H(x, y):open
-   x := x + y
+   x := $x + y$
 H(x):close
 
 x := F(1):(...G, 1):H
@@ -127,8 +136,8 @@ x := 1
 
 <<START
 $;x + 1$
-x := x + 1
-if x < 10 then >>START
+x := $x + 1$
+if $x < 10$ then >>START
 ```
 
 ## Looping Library
@@ -158,7 +167,8 @@ F(y):open
 F(y):close
 
 G(y):open
-   if y < 6 then c := $true$ and G:close
+   if $y < 6$ then c := $true$ then G:close
+   // $y < 6$ => c := $true$ => G:close
    c := $false$
 G(c):close
 
@@ -186,9 +196,9 @@ print(f) // Print a function
 ```js
 """
 :open
-  x {0...\INF}: Value that will get 1 added to it
+  x {n | n ∈ of \N}: Value that will get 1 added to it
 :close
-  x {0...\INF}: Value that has gotten 1 added to it
+  x {nx | n ∈ \N}: Value that has gotten 1 added to it
 """
 F(x):open
    x := $x + 1$
@@ -202,4 +212,38 @@ x := 4
 y := &x
 y := 2
 $x$ // 2
+```
+
+## Complex Space
+
+```js
+#define "print" from "std::print"
+
+print($x^2 + 1 = 0$) // {sqrt(-1), -sqrt(-1)}
+space:open
+   #define "def::complex"
+   print($x^2 + 1 = 0$) // {i, -i}
+space:close
+```
+
+## Undefined Operations
+
+```js
+#define "print" from "std::print"
+
+// There are no runtime errors, only undefined
+print($0 / 0$) // {\UNDEFINED}
+print($0 / 0 + 1$) // {\UNDEFINED}
+print($0 / 0 = \UNDEFINED$) // True
+```
+
+## Set manipulation
+
+```js
+#define "print" from "std::print"
+
+x = {1, 2, 3, 4}
+y = {1, 2}
+print($y ⊆ x$) // True
+print($∅ = {}$) // True
 ```
