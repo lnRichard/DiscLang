@@ -79,9 +79,9 @@ a, b := $F(1)$ // 2, 1
 
 ```js
 F(x):open
-   x := $x + 1$
-   if $x < 10$ then F:close // Early stop
-   x := $x + 1$
+   x := $;x + 1$
+   if $;x < 10$ then F:close // Early stop
+   x := $;x + 1$
 F(x):close
 ```
 
@@ -91,11 +91,11 @@ F(x):close
 #define "print" from "std::print"
 
 F(x):open
-   x := $x + 1$
+   x := $;x + 1$
 F(x):close
 
 G(x):async
-   await x := $F(2) + x$ // Await resolve
+   await x := $F(2) + ;x$ // Await resolve
 G(x):close
 
 // Chain Existing Function
@@ -115,15 +115,15 @@ H(x):close
 
 ```js
 F(x):async
-   x := $x + 1$
+   x := $;x + 1$
 F(x):close
 
 G(x):open
-   x := $x + 1$
+   x := $;x + 1$
 G(x):close
 
 H(x, y):open
-   x := $x + y$
+   x := $;x + y$
 H(x):close
 
 x := F(1):(...G, 1):H
@@ -136,8 +136,8 @@ x := 1
 
 <<START
 $;x + 1$
-x := $x + 1$
-if $x < 10$ then >>START
+x := $;x + 1$
+if $;x < 10$ then >>START
 ```
 
 ## Looping Library
@@ -148,7 +148,7 @@ if $x < 10$ then >>START
 #define "iloop" from "std::loop"
 
 F(x /*Incrementer*/, y):open
-   y := $x + 1$
+   y := $;x + 1$
 F(y):close
 
 // iloop(execute, min, max, step, arguments)
@@ -163,11 +163,11 @@ y := iloop(f(x, rf) := @F(x, ...rf)@, 1, 3, 1, (1))
 #define "cloop" from "std::loop"
 
 F(y):open
-   y := $y + 1$
+   y := $;y + 1$
 F(y):close
 
 G(y):open
-   if $y < 6$ then c := $true$ then G:close
+   if $;y < 6$ then c := $true$ then G:close
    // $y < 6$ => c := $true$ => G:close
    c := $false$
 G(c):close
@@ -201,7 +201,7 @@ print(f) // Print a function
   x {nx | n ∈ \N}: Value that has gotten 1 added to it
 """
 F(x):open
-   x := $x + 1$
+   x := $;x + 1$
 F(x):close
 ```
 
@@ -242,8 +242,34 @@ print($0 / 0 = \UNDEFINED$) // True
 ```js
 #define "print" from "std::print"
 
-x = {1, 2, 3, 4}
-y = {1, 2}
-print($y ⊆ x$) // True
+x := {1, 2, 3, 4}
+y := {1, 2}
+z := &x
+
+// Subset
+print($;y ⊆ ;x$) // True
+print($;y <subset>of ;x$) // True
+
+// Equals
 print($∅ = {}$) // True
+print($∅ <value>is {}$) // True
+print(${1, 2} <type>is {}$) // True
+print($;x <addr>is ;z$) // True
+
+// Infinity
+print($1 ∈ ℕ$) // True
+print($1 <elem>of ℕ$) // True
+```
+
+## Conditional logic
+
+```js
+#define "print" from "std::print"
+
+// Logical 'If-Then'
+if $1 = 1$ then $"Hello World!"$ // Hello World!
+if ¬$1 = 2$ then $"Bye World!"$ // Bye World!
+
+// Logical 'If-Then' Shorthand
+$1 = 1$ |=> $"Welcome Back!"$ // Welcome Back!
 ```
