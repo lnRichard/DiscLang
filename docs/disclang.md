@@ -252,9 +252,8 @@ z := &x
 print($;y ⊆ ;x$)
 print($;y <subset>of ;x$)
 
-// Equals
 print($∅ = {}$)
-print($∅ <value>is {}$)
+print($∅ <value>is {}$) // Same as '='
 print(${1, 2} <type>is {}$)
 print($;x <addr>is ;z$)
 
