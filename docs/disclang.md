@@ -130,17 +130,6 @@ H(x):close
 x := F(1):(...G, 1):H
 ```
 
-## Looping Functionality
-
-```js
-x := 1
-
-<<START
-$;x + 1$
-x := $;x + 1$
-if $;x < 10$ then >>START
-```
-
 ## Looping Library
 
 ### Iterative Loop
