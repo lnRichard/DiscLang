@@ -284,3 +284,17 @@ if true = (1 = 1) then "WHAT!" // WHAT!
 // $$, Evaluate before ordered sets (), while ordered sets (), evaluate before what is outside
 // Mathematical order goes from inside to outside, from left to right, following mathematical order
 ```
+
+## Disclang Algorithms
+
+### FizzBuzz
+
+```js
+F(n):open
+   // FizzBuzz
+   if $n % 3 = 0$ then fb :+ "Fiz"
+   if $n % 5 = 0$ then fb :+ "Buz"
+F(fb):close
+
+fb = [F(n) | n <elem>of {n | 11 > n > 0 & n <elem>of \N}]
+```
