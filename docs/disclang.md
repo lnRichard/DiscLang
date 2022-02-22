@@ -1,6 +1,7 @@
 # DiscLang
 
 Sources: <https://www.maths.usyd.edu.au/u/UG/JM/MATH1901/r/PDF/cheat-sheet.pdf>
+Operational Order: Evaluations, Sets, then Mathematical order
 
 ## Normal Operations
 
@@ -259,5 +260,27 @@ print($;x <addr>is ;z$)
 
 // Infinity
 print($1 ∈ ℕ$)
-print($1 <elem>of ℕ$)
+print($1 <elem>of \N$)
+```
+
+## Mathematical order
+
+```js
+// '$' are not actually needed
+x := 1 + 2
+x := $1 + 2$
+
+// However they are standart, because of possible ambiguity
+if true = 1 = 1 then "WHAT!" // Evaluates from left to right
+
+// Could mean:
+if $true = 1$ = 1 then "WHAT!"
+if true = $1 = 1$ then "WHAT!" // WHAT!
+
+// Which could also be represented by ordered set of length 1:
+if (true = 1) = 1 then "WHAT!"
+if true = (1 = 1) then "WHAT!" // WHAT!
+
+// $$, Evaluate before ordered sets (), while ordered sets (), evaluate before what is outside
+// Mathematical order goes from inside to outside, from left to right, following mathematical order
 ```
