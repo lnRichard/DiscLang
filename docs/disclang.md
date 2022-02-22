@@ -1,6 +1,7 @@
 # DiscLang
 
 Sources: <https://www.maths.usyd.edu.au/u/UG/JM/MATH1901/r/PDF/cheat-sheet.pdf>
+
 Operational Order: Evaluations, Sets, then Mathematical order
 
 ## Normal Operations
