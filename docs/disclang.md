@@ -246,17 +246,19 @@ x := {1, 2, 3, 4}
 y := {1, 2}
 z := &x
 
+// ? Everything evaluates to true
+
 // Subset
-print($;y ⊆ ;x$) // True
-print($;y <subset>of ;x$) // True
+print($;y ⊆ ;x$)
+print($;y <subset>of ;x$)
 
 // Equals
-print($∅ = {}$) // True
-print($∅ <value>is {}$) // True
-print(${1, 2} <type>is {}$) // True
-print($;x <addr>is ;z$) // True
+print($∅ = {}$)
+print($∅ <value>is {}$)
+print(${1, 2} <type>is {}$)
+print($;x <addr>is ;z$)
 
 // Infinity
-print($1 ∈ ℕ$) // True
-print($1 <elem>of ℕ$) // True
+print($1 ∈ ℕ$)
+print($1 <elem>of ℕ$)
 ```
