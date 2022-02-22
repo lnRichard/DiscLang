@@ -19,17 +19,6 @@ $Q => P$ // True
 $P => Q$ // False
 ```
 
-## Conditional Logic
-
-```js
-P := true
-Q := false
-// Assign
-
-// If statement
-if $Q => P$ then $1$ // 1
-```
-
 ## Expression Building
 
 ```js
@@ -38,6 +27,17 @@ b := @x^3@ // Valid
 
 // Allow construction
 c := $;a + ;b = 3$ // c = 1
+```
+
+## Conditional Logic
+
+```js
+// Logical 'If-Then'
+if $1 = 1$ then $"Hello World!"$ // Hello World!
+if ¬$1 = 2$ then $"Bye World!"$ // Bye World!
+
+// Logical 'If-Then' Shorthand
+$1 = 1$ |=> $"Welcome Back!"$ // Welcome Back!
 ```
 
 ## Contextual Spaces
@@ -259,17 +259,4 @@ print($;x <addr>is ;z$) // True
 // Infinity
 print($1 ∈ ℕ$) // True
 print($1 <elem>of ℕ$) // True
-```
-
-## Conditional logic
-
-```js
-#define "print" from "std::print"
-
-// Logical 'If-Then'
-if $1 = 1$ then $"Hello World!"$ // Hello World!
-if ¬$1 = 2$ then $"Bye World!"$ // Bye World!
-
-// Logical 'If-Then' Shorthand
-$1 = 1$ |=> $"Welcome Back!"$ // Welcome Back!
 ```
