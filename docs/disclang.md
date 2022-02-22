@@ -284,7 +284,7 @@ F(n):open
    // FizzBuzz
    if $n % 3 = 0$ then fb :+ "Fiz"
    if $n % 5 = 0$ then fb :+ "Buz"
-F(fb):close
+F(fb := ""):close
 
 fb = [F(n) | n <elem>of {n | 11 > n > 0 & n <elem>of \N}]
 ```
