@@ -1,0 +1,25 @@
+{
+    "name": "disclang",
+    "displayName": "DiscLang",
+    "description": "DiscLang Programming Language",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.64.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "disclang",
+            "aliases": ["DiscLang", "disclang"],
+            "extensions": [".disc"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "disclang",
+            "scopeName": "source.disc",
+            "path": "./syntaxes/disclang.tmLanguage.json"
+        }]
+    }
+}
