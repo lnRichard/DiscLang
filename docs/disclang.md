@@ -327,3 +327,9 @@ e = [F(n) | n <elem>of {n | 11 > n > 0 & n <elem>of \N}]
    - Fix: Allow reverse spreading (...(1, 2, 3)) and ((1, 2, 3)...) (Reverse)
 2. Vector slices [1:2] // Actually just an [n | ...] operation
    - Fix: Add it, or mathematical indexing such as: "aᵢ"
+```js
+v = [6, 9, 12] // Index vector: vi = [1: 6, 2: 9, 3: 12]
+v[1] // Match with index vector: [6, 9]
+v[1, 2] // Match with index vector: [6, 9]
+v[1..2] // Match with index vector: [6, 9]
+```
