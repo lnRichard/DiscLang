@@ -323,4 +323,5 @@ e = [F(n) | n <elem>of {n | 11 > n > 0 & n <elem>of \N}]
 ## Problems
 
 1. n | ... syntax can not define if n increases or decreases
-2. Array slices?
+2. Array slices [1:2] (Actually just an [n | ...] operation)
+3. 
