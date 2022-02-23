@@ -266,6 +266,44 @@ if true = (1 = 1) then "WHAT!" // WHAT!
 // Mathematical order goes from inside to outside, from left to right, following mathematical order
 ```
 
+## Loop Manipulation
+
+```js
+// Evaluate expressions
+$v +: 1$ for $10 > n > 0 & n <elem>of \N$ // n = 10
+
+// For Loop
+v := [n | n] // \<[]>INF
+v := [do n for n] // \<[]>INF
+v := [n | n <elem>of \N] // \<[N]>INF
+
+// By default n = $-\INF$..$\INF$..$1 / \INF$
+v := {n | n} // \<{}>INF
+
+// Other usecases
+x := 1
+do $x +: n$ for $n > 0$ // \<Z+>INF
+
+// Multiple loops
+x, y := (void, void)
+do (x := $[n]$ && y := ${o}$) for (10 >= o:p > 0 & o:p <elem>of \N)
+```
+
+## Bounds Function
+
+```js
+#define "bounds" from "std::collection"
+#define "print" from "std::print"
+
+// Using bounds
+do print("test") for (void | bounds(_, 1, 10, \N)) // 10x "test"
+// do print("test") for (void | 10 >= n >= 1 & n <elem>of \N) // 10x "test"
+
+// Using repeat
+#define "repeat" from "std::loop"
+repeat(@print("test")@, 10) // 10x "test"
+```
+
 ## Disclang Algorithms
 
 ### FizzBuzz
@@ -278,9 +316,12 @@ F(n):open
 F(fb := ""):close
 
 fb = [F(n) | n <elem>of {n | 11 > n > 0 & n <elem>of \N}]
+
+#define "print" from "std::print"
+do print(F(n)) for (n | 11 > n > 0 & n <elem>of \N)
 ```
 
-## Fibonacci
+### Fibonacci
 
 ```js
 F(n):open
@@ -292,7 +333,7 @@ F(fib := n):close
 fib = F(10)
 ```
 
-## 99 Bottles of Beer
+### 99 Bottles of Beer
 
 ```js
 #define "print" from "std::print"
@@ -309,7 +350,7 @@ F(n):close
 F(99)
 ```
 
-## Even Numbers
+### Even Numbers
 
 ```js
 F(n):open
@@ -320,16 +361,36 @@ F(n):close
 e = [F(n) | n <elem>of {n | 11 > n > 0 & n <elem>of \N}]
 ```
 
-## Problems
+### Reverse String
 
-1. n | ... syntax can not define if n increases or decreases
-   - Fix: Allow set to ordered set, and ordered set reversal (possibly also slicing?)
-   - Fix: Allow reverse spreading (...(1, 2, 3)) and ((1, 2, 3)...) (Reverse)
-2. Vector slices [1:2] // Actually just an [n | ...] operation
-   - Fix: Add it, or mathematical indexing such as: "aᵢ"
 ```js
-v = [6, 9, 12] // Index vector: vi = [1: 6, 2: 9, 3: 12]
-v[1] // Match with index vector: [6, 9]
-v[1, 2] // Match with index vector: [6, 9]
-v[1..2] // Match with index vector: [6, 9]
+// Define string
+s = "Test"
+
+// 1.
+r = s[|s|::-1]
+
+// 2.
+r = [s[$|s| - n$] | $|s| >= n > 0 & n <elem>of \N$]
+
+// 3.
+r = [s[n] | n <elem>of ((n | $|s| >= n > 0 & n <elem>of \N$)...)]
+```
+
+## Palindrome Check
+
+```js
+#define "lower", "isalpha" from "std::string"
+F(lower(s)):open
+   if ¬isalpha(s) then F:close
+   p := $s = s[|s|::-1]$
+F(p):close
+```
+
+## Absolute Value
+
+```js
+F(n):open
+   if n < 0 then n := -n 
+F(n):close
 ```
