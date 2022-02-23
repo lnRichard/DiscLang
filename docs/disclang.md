@@ -269,9 +269,6 @@ if true = (1 = 1) then "WHAT!" // WHAT!
 ## Loop Manipulation
 
 ```js
-// Evaluate expressions
-$v +: 1$ for $10 > n > 0 & n <elem>of \N$ // n = 10
-
 // For Loop
 v := [n | n] // \<[]>INF
 v := [do n for n] // \<[]>INF
@@ -283,6 +280,9 @@ v := {n | n} // \<{}>INF
 // Other usecases
 x := 1
 do $x +: n$ for $n > 0$ // \<Z+>INF
+
+x := 1
+do $x +: 1$ for $10 > n > 0 & n <elem>of \N$ // x = 10
 
 // Multiple loops
 x, y := (void, void)
