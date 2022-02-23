@@ -196,15 +196,6 @@ F(x):open
 F(x):close
 ```
 
-## Using Pointers
-
-```js
-x := 4
-y := &x
-y := 2
-$x$ // 2
-```
-
 ## Complex Space
 
 ```js
@@ -287,4 +278,44 @@ F(n):open
 F(fb := ""):close
 
 fb = [F(n) | n <elem>of {n | 11 > n > 0 & n <elem>of \N}]
+```
+
+## Fibonacci
+
+```js
+F(n):open
+   // Compiler automatically detects similar negation, and uses the same result
+   if $n <elem>of {1, 2}$ then fib := n
+   if ¬$n <elem>of {1, 2}$ then fib := F(n - 1) + F(n - 2)
+F(fib := n):close
+
+fib = F(10)
+```
+
+## 99 Bottles of Beer
+
+```js
+#define "print" from "std::print"
+F(n := 99):open
+   print($n + " bottles of beer on a wall"$, 
+         $n + " bottles of beer"$,
+         "Take one down, pass it around",
+         $n := n - 1$,
+         n = " bottles of beer on a wall")
+   if n > 0 then F(n)
+F(n):close
+
+// 99 bottles of beer on a wall
+F(99)
+```
+
+## Even Numbers
+
+```js
+F(n):open
+   // Voids all non-even numbers
+   if ¬$n % 2 = 0$ then n := void // Void is nothing, go eat a pancake
+F(n):close
+
+e = [F(n) | n <elem>of {n | 11 > n > 0 & n <elem>of \N}]
 ```
