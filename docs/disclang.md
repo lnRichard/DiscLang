@@ -324,5 +324,6 @@ e = [F(n) | n <elem>of {n | 11 > n > 0 & n <elem>of \N}]
 
 1. n | ... syntax can not define if n increases or decreases
    - Fix: Allow set to ordered set, and ordered set reversal (possibly also slicing?)
+   - Fix: Allow reverse spreading (...(1, 2, 3)) and ((1, 2, 3)...) (Reverse)
 2. Array slices [1:2] // Actually just an [n | ...] operation
    - Fix: Add it, or mathematical indexing such as: "aᵢ"
